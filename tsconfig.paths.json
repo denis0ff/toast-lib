@@ -5,14 +5,14 @@
       "@components/*": [
         "src/components/*"
       ],
+      "@components": [
+        "src/components/"
+      ],
       "@constants": [
         "src/constants/"
       ],
       "@utils": [
         "src/utils/"
-      ],
-      "@App": [
-        "src/App/"
       ],
       "@theme": [
         "src/theme/"
@@ -25,7 +25,10 @@
       ],
       "@assets/*": [
         "src/assets/*"
-      ]
+      ],
+      "@src": [
+        "src/"
+      ],
     },
   }
 }
