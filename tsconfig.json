@@ -21,7 +21,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": [
-      "cypress"
+      "cypress",
+      "node"
     ]
   },
   "include": [

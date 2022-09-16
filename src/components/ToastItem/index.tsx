@@ -1,8 +1,25 @@
 import { useEffect } from 'react';
-
 import { Toast } from '@types';
+import {
+  ToastButton,
+  ToastContainer,
+  ToastDescription,
+  ToastIcon,
+  ToastTextContainer,
+  ToastTitle,
+} from './styled';
 
-const ToastItem = ({ title, description, id, removeToast, setTimer, duration }: Toast) => {
+const ToastItem = ({
+  title,
+  description,
+  id,
+  removeToast,
+  setTimer,
+  duration,
+  color,
+  variant,
+  space,
+}: Toast) => {
   const handleRemove = () => removeToast(id);
 
   useEffect(() => {
@@ -12,13 +29,14 @@ const ToastItem = ({ title, description, id, removeToast, setTimer, duration }: 
   }, []);
 
   return (
-    <li>
-      <div>
-        <h2>{title}</h2>
-        <p>{description}</p>
-      </div>
-      <button onClick={handleRemove}>&#10006;</button>
-    </li>
+    <ToastContainer color={color} variant={variant} space={space}>
+      <ToastIcon variant={variant} />
+      <ToastTextContainer>
+        <ToastTitle>{title}</ToastTitle>
+        <ToastDescription>{description}</ToastDescription>
+      </ToastTextContainer>
+      <ToastButton onClick={handleRemove}>&#10006;</ToastButton>
+    </ToastContainer>
   );
 };
 

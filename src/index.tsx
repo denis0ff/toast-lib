@@ -8,9 +8,8 @@ export const ToastService = new ToastSingleton();
 
 export const ToastProvider = (config: ToastConfig) => {
   const toastRef = useRef<RefFunctions>();
-
   useLayoutEffect(() => {
-    if (toastRef.current) ToastService.initialize(toastRef.current);
+    ToastService.initialize(toastRef.current);
   }, []);
 
   return <ToastList ref={toastRef} toastConfig={config} />;

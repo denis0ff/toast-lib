@@ -1,18 +1,26 @@
 import { useToast } from '@hooks';
 import { ToastService, ToastProvider } from '@src';
 import { ToastConfig } from '@types';
+import { GlobalStyle, theme } from '@theme';
+import { ThemeProvider } from 'styled-components';
+import { Button } from './styled';
+import ErrorBoundary from '@components/ErrorBoundary';
 
 export const WithButtons = (args: ToastConfig) => {
   const { info, warning, error, success } = useToast();
   ToastService.toasts = [];
+
   return (
-    <div>
-      <button onClick={() => info('Info toast example')}>Add info toast</button>
-      <button onClick={() => warning('Warning toast example')}>Add warning toast</button>
-      <button onClick={() => error('Error toast example')}>Add error toast</button>
-      <button onClick={() => success('Success toast example')}>Add success toast</button>
-      <ToastProvider {...args} />
-    </div>
+    <ThemeProvider theme={theme}>
+      <ErrorBoundary>
+        <Button onClick={() => info('Info toast example')}>Add info toast</Button>
+        <Button onClick={() => warning('Warning toast example')}>Add warning toast</Button>
+        <Button onClick={() => error('Error toast example')}>Add error toast</Button>
+        <Button onClick={() => success('Success toast example')}>Add success toast</Button>
+        <ToastProvider {...args} />
+      </ErrorBoundary>
+      <GlobalStyle />
+    </ThemeProvider>
   );
 };
 
@@ -27,7 +35,7 @@ export default {
         },
       },
     },
-    spacing: {
+    space: {
       table: {
         defaultValue: {
           summary: '16',

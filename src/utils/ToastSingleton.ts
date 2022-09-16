@@ -6,7 +6,7 @@ export class ToastSingleton {
   toasts: Toast[] = [];
   toastRef: RefFunctions | undefined;
 
-  initialize = (ref: RefFunctions) => {
+  initialize = (ref: RefFunctions | undefined) => {
     this.toastRef = ref;
   };
 

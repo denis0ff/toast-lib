@@ -1,6 +1,6 @@
 export type ToastConfig = {
   position: Position;
-  spacing: number;
+  space: number;
   color: string;
   animation: 'fade' | 'slide';
   variant: Variant;
@@ -16,7 +16,7 @@ export type Position =
   | 'bottom-center'
   | 'bottom-right';
 
-export type Variant = 'error' | 'warning' | 'success' | 'info';
+export type Variant = 'info' | 'warning' | 'error' | 'success';
 
 export interface CreateToastProps extends Partial<ToastConfig> {
   description: string;
@@ -26,7 +26,7 @@ export interface CreateToastProps extends Partial<ToastConfig> {
 export interface Toast extends Required<CreateToastProps> {
   id: string;
   removeToast: (id: string) => void;
-  setTimer: (id: string, duration: number) => number | undefined;
+  setTimer: (id: string, duration: number) => NodeJS.Timeout | undefined;
 }
 
 export type RefFunctions = {

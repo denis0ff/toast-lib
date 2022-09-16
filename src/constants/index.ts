@@ -9,9 +9,28 @@ export const positions = {
   'bottom-center': 'left: 50%; bottom: 10px; transform: translateX(-50%);',
 };
 
+export const variants = {
+  info: {
+    color: '#9A40D3',
+    icon: `url(${process.env.PUBLIC_URL}/icons/info.svg)`,
+  },
+  warning: {
+    color: '#F4E048',
+    icon: `url(${process.env.PUBLIC_URL}/icons/warning.svg)`,
+  },
+  error: {
+    color: '#E25837',
+    icon: `url(${process.env.PUBLIC_URL}/icons/error.svg)`,
+  },
+  success: {
+    color: '#37E29A',
+    icon: `url(${process.env.PUBLIC_URL}/icons/success.svg)`,
+  },
+};
+
 export const defaultToastProps: Required<ToastConfig> = {
   position: 'bottom-left',
-  spacing: 16,
+  space: 16,
   color: '',
   animation: 'slide',
   variant: 'info',

@@ -16,10 +16,9 @@ module.exports = {
     "builder": "@storybook/builder-webpack5"
   },
   typescript: {
-    check: true, // type-check stories during Storybook build
+    check: true,
   },
   webpackFinal: async (config) => {
-    config.resolve.alias['@'] = path.resolve(__dirname, '../src')
     config.resolve.alias['@components'] = path.resolve(__dirname, '../src/components')
     config.resolve.alias['@theme'] = path.resolve(__dirname, '../src/theme')
     config.resolve.alias['@utils'] = path.resolve(__dirname, '../src/utils')

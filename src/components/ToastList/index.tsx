@@ -1,34 +1,33 @@
-import { forwardRef, useCallback, useImperativeHandle, useState } from 'react';
+import { forwardRef, useImperativeHandle, useReducer } from 'react';
 import ReactDOM from 'react-dom';
-
-import ErrorBoundary from '@components/ErrorBoundary';
 import Toast from '@components/ToastItem';
 import { ToastService } from '@src';
 import { ToastListProps } from '@types';
 import { usePortal } from '@hooks';
-import { GlobalStyle } from '@theme';
+import { defaultToastProps } from '@constants';
+import { ToastList, ToastWrapper } from './styled';
 
-const ToastList = forwardRef(({ rootElement, toastConfig }: ToastListProps, ref) => {
+const ToastListPortal = forwardRef(({ rootElement, toastConfig }: ToastListProps, ref) => {
   const portal = usePortal(rootElement);
-  const [_, setToasts] = useState([]);
+  const [, forceUpdate] = useReducer(() => ({}), {});
 
   useImperativeHandle(ref, () => ({
-    rerender: () => setToasts([]),
+    rerender: forceUpdate,
   }));
 
   const toasts = ToastService.getToasts();
+  const position = toastConfig.position ?? defaultToastProps.position;
 
   return ReactDOM.createPortal(
-    <ErrorBoundary>
-      <ul>
+    <ToastWrapper>
+      <ToastList position={position}>
         {toasts.map((toast) => (
           <Toast key={toast.id} {...toast} {...toastConfig} />
         ))}
-      </ul>
-      <GlobalStyle />
-    </ErrorBoundary>,
+      </ToastList>
+    </ToastWrapper>,
     portal
   );
 });
 
-export default ToastList;
+export default ToastListPortal;
