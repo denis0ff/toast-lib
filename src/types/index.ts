@@ -2,7 +2,7 @@ export type ToastConfig = {
   position: Position;
   space: number;
   color: string;
-  animation: 'fade' | 'slide';
+  animation: Animation;
   variant: Variant;
   title: string;
   duration: number;
@@ -17,6 +17,10 @@ export type Position =
   | 'bottom-right';
 
 export type Variant = 'info' | 'warning' | 'error' | 'success';
+
+export type Direction = 'forward' | 'backward';
+
+export type Animation = 'fade' | 'slide';
 
 export interface CreateToastProps extends Partial<ToastConfig> {
   description: string;

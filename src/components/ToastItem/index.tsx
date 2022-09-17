@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { useAnimation } from '@hooks';
 import { Toast } from '@types';
 import {
   ToastButton,
@@ -19,8 +20,10 @@ const ToastItem = ({
   color,
   variant,
   space,
+  animation,
 }: Toast) => {
-  const handleRemove = () => removeToast(id);
+  const ref = useRef<HTMLLIElement>(null);
+  const [direction, handleRemove] = useAnimation(ref.current, () => removeToast(id));
 
   useEffect(() => {
     if (!duration) return;
@@ -29,7 +32,14 @@ const ToastItem = ({
   }, []);
 
   return (
-    <ToastContainer color={color} variant={variant} space={space}>
+    <ToastContainer
+      color={color}
+      variant={variant}
+      space={space}
+      animation={animation}
+      direction={direction}
+      ref={ref}
+    >
       <ToastIcon variant={variant} />
       <ToastTextContainer>
         <ToastTitle>{title}</ToastTitle>

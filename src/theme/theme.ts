@@ -18,6 +18,7 @@ export const theme = {
   notifyWidth: '260px',
   notifyHeight: '80px',
   space: '4px',
+  transition: ['100ms', '300ms', '500ms'],
   colors: {
     primary,
     secondary,

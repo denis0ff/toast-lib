@@ -11,13 +11,12 @@ export class ToastSingleton {
   };
 
   getToasts = () => {
-    return this.toasts;
+    return this.toasts.slice(-3).reverse();
   };
 
   addToast = (toast: Toast) => {
-    this.toasts.unshift(toast);
+    this.toasts.push(toast);
     this.toastRef?.rerender();
-    if (this.toasts.length > 3) this.removeToast(this.toasts[3].id);
   };
 
   removeToast = (toastId: string) => {

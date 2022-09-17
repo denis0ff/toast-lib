@@ -1,8 +1,14 @@
-import { variants } from '@constants';
-import { Variant } from '@types';
-import styled from 'styled-components';
+import { resolveAnimation, variants } from '@constants';
+import { Animation, Direction, Variant } from '@types';
+import styled, { css } from 'styled-components';
 
-export const ToastContainer = styled.li<{ color: string; variant: Variant; space: number }>`
+export const ToastContainer = styled.li<{
+  color: string;
+  variant: Variant;
+  space: number;
+  animation: Animation;
+  direction: Direction;
+}>`
   padding: ${({ space }) => `${space}px`};
   width: ${({ theme }) => theme.notifyWidth};
   height: ${({ theme }) => theme.notifyHeight};
@@ -13,10 +19,22 @@ export const ToastContainer = styled.li<{ color: string; variant: Variant; space
   background-color: ${({ color, variant }) => color || variants[variant].color};
   color: ${({ theme, variant }) =>
     variant === 'warning' ? theme.colors.black : theme.colors.white};
+  cursor: grab;
+  user-select: none;
+  z-index: 1000;
+  &:active {
+    cursor: grabbing;
+  }
   & * {
     color: inherit;
     font-weight: ${({ theme }) => theme.fontWeight[0]};
   }
+  animation: ${({ animation, direction }) =>
+    css`
+      ${resolveAnimation(animation, direction)}
+      ${({ theme }) => theme.transition[2]}
+      forwards;
+    `};
 `;
 
 export const ToastIcon = styled.div<{ variant: Variant }>`
