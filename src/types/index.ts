@@ -30,7 +30,6 @@ export interface CreateToastProps extends Partial<ToastConfig> {
 export interface Toast extends Required<CreateToastProps> {
   id: string;
   removeToast: (id: string) => void;
-  setTimer: (id: string, duration: number) => NodeJS.Timeout | undefined;
 }
 
 export type RefFunctions = {

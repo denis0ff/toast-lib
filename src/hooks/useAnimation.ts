@@ -1,19 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, RefObject, useReducer } from 'react';
 import { Direction } from '@types';
 
 export const useAnimation = (
-  ref: HTMLElement | null,
+  duration: number,
   callback: () => void
-): [Direction, () => void] => {
-  const [direction, setDirection] = useState<Direction>('forward');
+): [Direction, RefObject<HTMLLIElement>, () => void] => {
+  const ref = useRef<HTMLLIElement>(null);
+  const timerId = useRef<NodeJS.Timeout>();
+  const [direction, setDirection] = useReducer((): Direction => 'backward', 'forward');
 
   useEffect(() => {
-    if (direction === 'backward' && ref) ref.addEventListener('animationend', callback);
-    return () => ref?.removeEventListener('animationend', callback);
+    if (direction === 'backward') ref.current?.addEventListener('animationend', callback);
+    return () => ref.current?.removeEventListener('animationend', callback);
   });
 
-  const handleRemove = () => {
-    setDirection('backward');
-  };
-  return [direction, handleRemove];
+  useEffect(() => {
+    if (duration)
+      timerId.current = setTimeout(() => {
+        setDirection();
+      }, duration);
+    return () => clearTimeout(timerId.current);
+  }, []);
+
+  return [direction, ref, setDirection];
 };

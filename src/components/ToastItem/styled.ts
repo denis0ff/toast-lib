@@ -19,12 +19,9 @@ export const ToastContainer = styled.li<{
   background-color: ${({ color, variant }) => color || variants[variant].color};
   color: ${({ theme, variant }) =>
     variant === 'warning' ? theme.colors.black : theme.colors.white};
-  cursor: grab;
   user-select: none;
   z-index: 1000;
-  &:active {
-    cursor: grabbing;
-  }
+
   & * {
     color: inherit;
     font-weight: ${({ theme }) => theme.fontWeight[0]};

@@ -28,6 +28,8 @@ export const variants = {
   },
 };
 
+export const NOTIFICATION_COUNT = 3;
+
 export const defaultToastProps: Required<ToastConfig> = {
   position: 'bottom-left',
   space: 16,

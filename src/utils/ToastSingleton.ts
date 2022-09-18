@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { defaultToastProps } from '@constants';
+import { defaultToastProps, NOTIFICATION_COUNT } from '@constants';
 import { CreateToastProps, RefFunctions, Toast } from '@types';
 
 export class ToastSingleton {
@@ -11,7 +11,7 @@ export class ToastSingleton {
   };
 
   getToasts = () => {
-    return this.toasts.slice(-3).reverse();
+    return this.toasts.slice(-NOTIFICATION_COUNT);
   };
 
   addToast = (toast: Toast) => {
@@ -24,20 +24,12 @@ export class ToastSingleton {
     this.toastRef?.rerender();
   };
 
-  setTimer = (id: string, duration: number) => {
-    const timer = setTimeout(() => {
-      this.removeToast(id);
-    }, duration);
-    return timer;
-  };
-
   createToast = (props: CreateToastProps) => {
     const newToast: Toast = {
       ...defaultToastProps,
       ...props,
       id: v4(),
       removeToast: (id) => this.removeToast(id),
-      setTimer: (id, time) => this.setTimer(id, time),
     };
     this.addToast(newToast);
 

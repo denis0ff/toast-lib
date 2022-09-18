@@ -23,7 +23,5 @@ const fade = {
   `,
 };
 
-export const resolveAnimation = (name: Animation, direction: Direction) => {
-  if (name === 'slide') return slide[direction];
-  return fade[direction];
-};
+export const resolveAnimation = (name: Animation, direction: Direction) =>
+  name === 'slide' ? slide[direction] : fade[direction];
