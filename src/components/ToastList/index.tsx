@@ -20,7 +20,7 @@ const ToastListPortal = forwardRef(({ rootElement, toastConfig }: ToastListProps
 
   return ReactDOM.createPortal(
     <ToastWrapper>
-      <ToastList position={position}>
+      <ToastList data-test-id="toast-list" position={position}>
         {toasts.map((toast) => (
           <Toast key={toast.id} {...toast} {...toastConfig} />
         ))}

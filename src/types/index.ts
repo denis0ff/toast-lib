@@ -5,6 +5,7 @@ export type ToastConfig = {
   animation: Animation;
   variant: Variant;
   title: string;
+  description: string;
   duration: number;
 };
 

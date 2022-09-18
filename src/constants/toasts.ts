@@ -37,5 +37,6 @@ export const defaultToastProps: Required<ToastConfig> = {
   animation: 'slide',
   variant: 'info',
   title: '',
+  description: '',
   duration: 0,
 };

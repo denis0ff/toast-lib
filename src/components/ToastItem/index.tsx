@@ -25,6 +25,7 @@ const ToastItem = ({
 
   return (
     <ToastContainer
+      data-test-id={`toast-${variant}`}
       color={color}
       variant={variant}
       space={space}
@@ -40,7 +41,9 @@ const ToastItem = ({
         <ToastTitle>{title}</ToastTitle>
         <ToastDescription>{description}</ToastDescription>
       </ToastTextContainer>
-      <ToastButton onClick={animatedRemove}>&#10006;</ToastButton>
+      <ToastButton data-test-id="remove-toast" onClick={animatedRemove}>
+        &#10006;
+      </ToastButton>
     </ToastContainer>
   );
 };
