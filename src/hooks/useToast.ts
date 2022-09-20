@@ -1,4 +1,4 @@
-import { ToastService } from '@src';
+import { ToastService } from '@utils';
 import { Variant } from '@types';
 
 const toastFactory = (variant: Variant) => (description: string) => {

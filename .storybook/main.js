@@ -19,6 +19,7 @@ module.exports = {
     check: true,
   },
   webpackFinal: async (config) => {
+    config.resolve.alias['@App'] = path.resolve(__dirname, '../src/App')
     config.resolve.alias['@components'] = path.resolve(__dirname, '../src/components')
     config.resolve.alias['@theme'] = path.resolve(__dirname, '../src/theme')
     config.resolve.alias['@utils'] = path.resolve(__dirname, '../src/utils')

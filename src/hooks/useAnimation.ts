@@ -15,10 +15,7 @@ export const useAnimation = (
   });
 
   useEffect(() => {
-    if (duration)
-      timerId.current = setTimeout(() => {
-        setDirection();
-      }, duration);
+    if (duration) timerId.current = setTimeout(setDirection, duration);
     return () => clearTimeout(timerId.current);
   }, []);
 

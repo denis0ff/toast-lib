@@ -2,7 +2,7 @@ import { v4 } from 'uuid';
 import { defaultToastProps, NOTIFICATION_COUNT } from '@constants';
 import { CreateToastProps, RefFunctions, Toast } from '@types';
 
-export class ToastSingleton {
+class ToastSingleton {
   toasts: Toast[] = [];
   toastRef: RefFunctions | undefined;
 
@@ -36,3 +36,5 @@ export class ToastSingleton {
     return newToast;
   };
 }
+
+export const ToastService = new ToastSingleton();
